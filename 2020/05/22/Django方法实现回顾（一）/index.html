@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Django实现方法回顾(一) | Peter的首页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="知识回顾，不做左耳进右耳出的傻狍子! - 用户注册：密码通过hash摘要算法，以十六进制字符串存储。 1hashilb.new(&#39;sha512&#39;, source.encode(&#39;utf-8&#39;)).hexdigest()  - 邮件系统可通过Django的send_mail实现 setting中配置发件信息。  1234567EMAIL_HOST &#x3D; smtp地址EMAIL_POST &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django实现方法回顾(一)">
+<meta property="og:url" content="http://yoursite.com/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Peter的首页">
+<meta property="og:description" content="知识回顾，不做左耳进右耳出的傻狍子! - 用户注册：密码通过hash摘要算法，以十六进制字符串存储。 1hashilb.new(&#39;sha512&#39;, source.encode(&#39;utf-8&#39;)).hexdigest()  - 邮件系统可通过Django的send_mail实现 setting中配置发件信息。  1234567EMAIL_HOST &#x3D; smtp地址EMAIL_POST &amp;#">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-22T08:53:27.000Z">
+<meta property="article:modified_time" content="2020-05-29T05:19:55.458Z">
+<meta property="article:author" content="Peter的百宝箱">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Peter的首页" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Peter的首页</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Django方法实现回顾（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time datetime="2020-05-22T08:53:27.000Z" itemprop="datePublished">2020-05-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Django实现方法回顾(一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>知识回顾，不做左耳进右耳出的傻狍子!</p>
+<h4 id="用户注册："><a href="#用户注册：" class="headerlink" title="- 用户注册："></a>- 用户注册：</h4><p>密码通过hash摘要算法，以十六进制字符串存储。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashilb.new(<span class="string">'sha512'</span>, source.encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br></pre></td></tr></table></figure>
+
+<h4 id="邮件系统可通过Django的send-mail实现"><a href="#邮件系统可通过Django的send-mail实现" class="headerlink" title="- 邮件系统可通过Django的send_mail实现"></a>- 邮件系统可通过Django的send_mail实现</h4><ul>
+<li>setting中配置发件信息。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_HOST &#x3D; smtp地址</span><br><span class="line"></span><br><span class="line">EMAIL_POST &#x3D; smtp（安全）端口</span><br><span class="line"></span><br><span class="line">EMAIL_HOST_USER &#x3D; 发件人</span><br><span class="line"></span><br><span class="line">EMAIL_HOST_PASSWORD &#x3D; 发件人授权码</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<ul>
+<li>message内容为经渲染的html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">message &#x3D; loader.get-template(&#39;html&#39;).render(data)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>其中data含有uuid生成的token唯一识别码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p_token &#x3D; uuid.uuid4().hex</span><br><span class="line">cache.set(p_token, email, timeout)    #存储在cache中等待验证</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="登录状态下身份验证可通过中间件实现："><a href="#登录状态下身份验证可通过中间件实现：" class="headerlink" title="- 登录状态下身份验证可通过中间件实现："></a>- 登录状态下身份验证可通过中间件实现：</h4><p>通过判断存储在session中的身份识别是否存在、（用户是否激活）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requset.user &#x3D; user     #view层直接调用requset.user</span><br></pre></td></tr></table></figure>
+
+<p>按需返回Json或Http响应。</p>
+<h4 id="Pillow验证码生成与验证"><a href="#Pillow验证码生成与验证" class="headerlink" title="- Pillow验证码生成与验证"></a>- Pillow验证码生成与验证</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL inmort Image, ImageDraw, ImageFont</span><br><span class="line"><span class="comment">#通过画布、画笔、设置画笔制作验证码。通过session验证</span></span><br><span class="line">ImageDraw.text/point/line  <span class="comment">#画笔有写字、划线、画点、画弧各种方法</span></span><br><span class="line"></span><br><span class="line">fp = BytesIO()</span><br><span class="line">image.save(fp, <span class="string">'png'</span>)           <span class="comment">#将图片以写入内存</span></span><br><span class="line"><span class="keyword">return</span> HttpResponse(fp.getvalue(), content_type=<span class="string">'image/png'</span>)<span class="comment">#指定MIME</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="CSRF放跨站攻击"><a href="#CSRF放跨站攻击" class="headerlink" title="- CSRF放跨站攻击"></a>- CSRF放跨站攻击</h4><ol>
+<li>提交POST请求在form下添加</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% csrf_token % &#125;    #通过自动生成cookie：csrftoken=xxxxxxx  提交时验证</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>用装饰器为视图函数添加豁免</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@csrf_exemt</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckarretxw0001vjr5htjf6pda" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Web服务器理解：uWSGI与Nginx配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/21/Nignx_Base/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Nginx安装及配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/29/Django%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%88%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B%EF%BC%89/">Django中间件（面向切面编程）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/28/Django%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">Django静态文件及文件上传</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/27/Django%E7%BC%93%E5%AD%98%E9%85%8D%E7%BD%AE/">Django缓存配置（Redis）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/25/MTV%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8B%EF%BC%89/">Django框架MTV流程回顾（下）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/24/MTV%EF%BC%88MVC%EF%BC%89%E6%B5%81%E7%A8%8B%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8A%EF%BC%89/">Django框架MTV流程回顾（上）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Peter的百宝箱<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

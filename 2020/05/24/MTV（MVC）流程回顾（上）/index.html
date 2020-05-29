@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Django框架MTV流程回顾（上） | Peter的首页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MVC模式：代表的是Model（模型）、View（视图）、Controller（控制）。 Model：数据层，做程序的逻辑处理。 View：视图层， 用于向用户端展示数据。 Controller：控制层， 用于处理用户的交互，将用户界面与业务逻辑合理组织。 MTV模式：Django框架的模型，分别代表了Model（模型）、View（视图）、Template（模板） Model（模型层）：数据库相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django框架MTV流程回顾（上）">
+<meta property="og:url" content="http://yoursite.com/2020/05/24/MTV%EF%BC%88MVC%EF%BC%89%E6%B5%81%E7%A8%8B%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+<meta property="og:site_name" content="Peter的首页">
+<meta property="og:description" content="MVC模式：代表的是Model（模型）、View（视图）、Controller（控制）。 Model：数据层，做程序的逻辑处理。 View：视图层， 用于向用户端展示数据。 Controller：控制层， 用于处理用户的交互，将用户界面与业务逻辑合理组织。 MTV模式：Django框架的模型，分别代表了Model（模型）、View（视图）、Template（模板） Model（模型层）：数据库相关">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-24T13:51:39.000Z">
+<meta property="article:modified_time" content="2020-05-29T05:19:55.046Z">
+<meta property="article:author" content="Peter的百宝箱">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Peter的首页" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Peter的首页</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MTV（MVC）流程回顾（上）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/24/MTV%EF%BC%88MVC%EF%BC%89%E6%B5%81%E7%A8%8B%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8A%EF%BC%89/" class="article-date">
+  <time datetime="2020-05-24T13:51:39.000Z" itemprop="datePublished">2020-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Django框架MTV流程回顾（上）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="MVC模式："><a href="#MVC模式：" class="headerlink" title="MVC模式："></a>MVC模式：</h3><p>代表的是Model（模型）、View（视图）、Controller（控制）。</p>
+<p>Model：数据层，做程序的逻辑处理。</p>
+<p>View：视图层， 用于向用户端展示数据。</p>
+<p>Controller：控制层， 用于处理用户的交互，将用户界面与业务逻辑合理组织。</p>
+<h3 id="MTV模式："><a href="#MTV模式：" class="headerlink" title="MTV模式："></a>MTV模式：</h3><p>Django框架的模型，分别代表了Model（模型）、View（视图）、Template（模板）</p>
+<p>Model（模型层）：数据库相关操作（ORM）。</p>
+<p>Template（模板层）：模板语法，充当数据展示角色。</p>
+<p>View（视图层）：做程序的逻辑处理。</p>
+<p>urls（路由分发）：按请求路径分发不同的views视图处理。</p>
+<a id="more"></a>
+
+<ul>
+<li><strong>Django流程：客户端 → urls → views → models → mysql</strong> </li>
+<li>​                     <strong>客户端 ← template ← views ← models←</strong>    </li>
+</ul>
+<h4 id="Model-模型层："><a href="#Model-模型层：" class="headerlink" title="Model 模型层："></a>Model 模型层：</h4><p>ORM对象关系映射：将业务逻辑和SQL语句解耦合</p>
+<ol>
+<li><h5 id="定义数据表结构-DDL"><a href="#定义数据表结构-DDL" class="headerlink" title="定义数据表结构 DDL"></a>定义数据表结构 DDL</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class 模型类(model.Model)</span><br><span class="line">	属性 &#x3D; model.字段类型（约束）</span><br><span class="line">	</span><br><span class="line">	class Meta:              #修改元信息</span><br><span class="line">		db_table &#x3D; &quot;表名&quot;</span><br></pre></td></tr></table></figure>
+
+<p>映射（迁移）前提：数据库配置完毕：setting设置，pymysql驱动安装，伪装</p>
+</li>
+</ol>
+<p>​                                   #mysql / base.py注释掉报错行</p>
+<ul>
+<li><strong>迁移原理</strong>：</li>
+</ul>
+<p>​        1. 生成迁移文件：根据mdels与已经生成的迁移文件对比，生成新的迁移文件。</p>
+<p>​        2. 执行迁移： 查看迁移记录（表），执行未迁移过的文件。</p>
+<p>​        重新迁移：删除迁移文件、迁移完成的表、迁移记录。</p>
+<ol start="2">
+<li><h5 id="增删改查-DML"><a href="#增删改查-DML" class="headerlink" title="增删改查 DML"></a>增删改查 DML</h5><ul>
+<li><p>增、改： save()</p>
+<p>实例化，设置属性。→ save()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 对应SQL语句</span><br><span class="line">insert into 表（字段，） value (值，);</span><br><span class="line">Update 表 set 字段&#x3D;值，...;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删： delete()</p>
+<p>基于查询.delete()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL:delete from 表 where ... &#x2F; truncate table 表</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查： 模型类.objects.操作（条件）</p>
+<p><strong>objects封装的操作：</strong></p>
+<ul>
+<li>Queryset：all()，filter()，exclude()，order_by()，values()，切片（不支持负数）</li>
+<li>获取单个对象：get() （多个/无 → 异常）， first()，last()</li>
+<li>内置函数：count()，exists()</li>
+<li>聚合函数：Sum()，Avg()，Count()，Max()，Min()</li>
+</ul>
+<p><strong>条件：</strong>属性__操作符=值 （两 ‘_’）</p>
+<ul>
+<li>gt，gte， it， ite， in， exact（=）</li>
+<li>like(模糊查询)：contains，startswith，endswiths</li>
+</ul>
+<p><strong>F（）对象</strong> — 获取属性的值，用于不同属性间的运算，支持算术运算</p>
+<p><strong>Q（）对象</strong> — 对条件进行封装，支持逻辑运算 &amp; | ~</p>
+</li>
+</ul>
+<p>补充：</p>
+<p>​        判断QuerySet是否为空：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">If QuerySet.exists():</span><br><span class="line">If QuerySet.count() &#x3D;&#x3D; 0：</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h4 id="models模型关系："><a href="#models模型关系：" class="headerlink" title="models模型关系："></a>models模型关系：</h4><p>最重要的表为主表。</p>
+<p>on_delete=model.CASECASD（级联删除）</p>
+<p>​                                PROTECT（主表受从表保护）</p>
+<p>​                                SET（_NULL / _DEFAULT / ()）</p>
+<h5 id="一、1：1"><a href="#一、1：1" class="headerlink" title="一、1：1"></a><strong>一、1：1</strong></h5><p>​    应用场景：复杂表拆分、拓展新功能。</p>
+<p>​    models模块中的  <strong>OneToOnefield()</strong></p>
+<p>​    <strong>原理：foreign key + unqiue</strong></p>
+<ul>
+<li>级联数据获取：</li>
+</ul>
+<p>​        主获从：隐性属性（主表.从表小写）</p>
+<p>​        从获主：显性属性（从表.外键字段）</p>
+<h5 id="二、1：M"><a href="#二、1：M" class="headerlink" title="二、1：M"></a><strong>二、1：M</strong></h5><p>​    models模块中的 <strong>ForeignKeyField()</strong></p>
+<ul>
+<li><p>级联数据获取：</p>
+<p>主获从：隐性属性（主表.从表_SET）</p>
+<p>从获主：显性属性（从表.外键字段）</p>
+</li>
+</ul>
+<h5 id="三、M：M"><a href="#三、M：M" class="headerlink" title="三、M：M"></a><strong>三、M：M</strong></h5><p>​    models模块中的 <strong>MangToMangField()</strong></p>
+<p>​    <strong>原理：产生一张单独的关系表（id， 主_id， 从_id）</strong></p>
+<p>​            <strong>1. 关系表中存储关联表的主键，通过多个外键实现。</strong></p>
+<p>​            <strong>2. 关系表中个多个外键值  组合唯一约束</strong></p>
+<ul>
+<li><p>级联数据获取：</p>
+<p>主获从：隐性属性（主表.从表_SET）</p>
+<p>从获主：显性属性（从表.外键字段）</p>
+</li>
+</ul>
+<h5 id="四、模型继承"><a href="#四、模型继承" class="headerlink" title="四、模型继承"></a>四、模型继承</h5><p>​    默认继承方法：通用字段在父表中，子表用外键连接父表。</p>
+<p>​    <em>缺陷：关系型数据库越复杂，效率低；每个子数据都对应一个父数据，父表庞大。</em></p>
+<ul>
+<li><strong>解决：</strong>元信息使父类模型<strong>抽象化</strong>  →  子表直接包含父类字段</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">	abstract = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h5><p>ORM实现了models → sql</p>
+<p><strong>sql → models：</strong></p>
+<blockquote>
+<p>python manage.py inspectdb &gt; App/models.py</p>
+</blockquote>
+<p>#直接根据数据表生成模型，自带元信息中包含manage = False （迁移系统忽略）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/24/MTV%EF%BC%88MVC%EF%BC%89%E6%B5%81%E7%A8%8B%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8A%EF%BC%89/" data-id="ckarrety20005vjr5datc6d6e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/25/MTV%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8B%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Django框架MTV流程回顾（下）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Web服务器理解：uWSGI与Nginx配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/29/Django%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%88%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B%EF%BC%89/">Django中间件（面向切面编程）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/28/Django%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">Django静态文件及文件上传</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/27/Django%E7%BC%93%E5%AD%98%E9%85%8D%E7%BD%AE/">Django缓存配置（Redis）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/25/MTV%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8B%EF%BC%89/">Django框架MTV流程回顾（下）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/24/MTV%EF%BC%88MVC%EF%BC%89%E6%B5%81%E7%A8%8B%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8A%EF%BC%89/">Django框架MTV流程回顾（上）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Peter的百宝箱<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Web服务器理解：uWSGI与Nginx配置 | Peter的首页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Web开发中是由Web服务器与Web框架两大块构成。 其中Web服务器即建立连接，转发请求与响应，对请求与响应的处理交由Web框架处理。 WSGI： Web服务器网关接口（Python Web Server Gateway Interface）是Python程序或框架和Web服务器之间的一种接口、协议 uWSGI：实现了WSGI协议的一个Web服务器。 实现过程：用户到服务器间是http协议，服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web服务器理解：uWSGI与Nginx配置">
+<meta property="og:url" content="http://yoursite.com/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Peter的首页">
+<meta property="og:description" content="Web开发中是由Web服务器与Web框架两大块构成。 其中Web服务器即建立连接，转发请求与响应，对请求与响应的处理交由Web框架处理。 WSGI： Web服务器网关接口（Python Web Server Gateway Interface）是Python程序或框架和Web服务器之间的一种接口、协议 uWSGI：实现了WSGI协议的一个Web服务器。 实现过程：用户到服务器间是http协议，服务">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-23T11:42:12.000Z">
+<meta property="article:modified_time" content="2020-05-29T05:19:55.166Z">
+<meta property="article:author" content="Peter的百宝箱">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Peter的首页" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Peter的首页</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Web服务器理解：uWSGI与Nginx配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-05-23T11:42:12.000Z" itemprop="datePublished">2020-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Web服务器理解：uWSGI与Nginx配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Web开发中是由<strong>Web服务器</strong>与<strong>Web框架</strong>两大块构成。</p>
+<p>其中<strong>Web服务器</strong>即建立连接，转发请求与响应，对请求与响应的处理交由Web框架处理。</p>
+<h4 id="WSGI：-Web服务器网关接口（Python-Web-Server-Gateway-Interface）"><a href="#WSGI：-Web服务器网关接口（Python-Web-Server-Gateway-Interface）" class="headerlink" title="WSGI： Web服务器网关接口（Python Web Server Gateway Interface）"></a><strong>WSGI：</strong> Web服务器网关接口<strong>（</strong>Python Web Server Gateway Interface）</h4><p>是Python程序或框架和Web服务器之间的一种接口、协议</p>
+<h4 id="uWSGI："><a href="#uWSGI：" class="headerlink" title="uWSGI："></a><strong>uWSGI：</strong></h4><p>实现了WSGI协议的一个Web服务器。</p>
+<p><strong>实现过程：</strong>用户到服务器间是http协议，服务器到Python框架间是WSGI协议，这里就需要uWSGI服务器实现WSGI协议。同理反之，响应数据也由Python框架通过WSGI协议返回给uWSGI服务器，再通过http协议传递给用户。</p>
+<ul>
+<li><p><strong>uWSGI + Django</strong> 即完成了<strong>简单</strong>的Web开发（仅适用<strong>访问量较少</strong>的个人网站）。</p>
+<a id="more"></a>
+
+</li>
+</ul>
+<blockquote>
+<p>pip install uwsgi</p>
+</blockquote>
+<h4 id="常用指令："><a href="#常用指令：" class="headerlink" title="常用指令："></a>常用指令：</h4><blockquote>
+<p>uwsgi –ini uwsgi.ini     #按配置文件初始化</p>
+<p>uwsgi –stop uwsgi.pid     #按pid信息关闭响应uwsgi服务器进程</p>
+<p>vim uwsgi.log              #查看日志</p>
+</blockquote>
+<h4 id="uWSGI配置详情："><a href="#uWSGI配置详情：" class="headerlink" title="uWSGI配置详情："></a>uWSGI配置详情：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">[uwsgi]</span><br><span class="line"># 对外提供 http 服务的端口</span><br><span class="line">http &#x3D; :8000</span><br><span class="line"></span><br><span class="line">#用于和 nginx 进行数据交互的端口</span><br><span class="line">socket &#x3D; 127.0.0.1:8001</span><br><span class="line"></span><br><span class="line"># django 程序的主目录</span><br><span class="line">chdir &#x3D;&#x2F;var&#x2F;www&#x2F;django_project</span><br><span class="line"></span><br><span class="line"># Django&#39;s wsgi file 相对于项目目录下</span><br><span class="line">wsgi-file &#x3D;django_project&#x2F;wsgi.py</span><br><span class="line"></span><br><span class="line"># maximum number of worker processes  最大进程数</span><br><span class="line">processes &#x3D; 4</span><br><span class="line"></span><br><span class="line">#thread numbers startched in each worker process 每个进程开始的线程数</span><br><span class="line">threads &#x3D; 2</span><br><span class="line"></span><br><span class="line">#开启主进程</span><br><span class="line">master&#x3D;True</span><br><span class="line"></span><br><span class="line">#一个高阶的cheap模式，在启动的时候只会分配n个工作进程，并使用自适应算法启动新的进程</span><br><span class="line">cheaper &#x3D; 10</span><br><span class="line"></span><br><span class="line">#在经过sec秒的不活跃状态的进程会被销毁(进入了cheap模式)，并最少保留cheaper指定的进程数</span><br><span class="line">idle &#x3D; 3600</span><br><span class="line"></span><br><span class="line">#monitor uwsgi status 通过该端口可以监控 uwsgi 的负载情况</span><br><span class="line">stats &#x3D; 127.0.0.1:9000</span><br><span class="line"></span><br><span class="line">#设置一个请求的超时时间(秒)，如果一个请求超过了这个时间，则请求被丢弃</span><br><span class="line">harakiri &#x3D; 60</span><br><span class="line">#当一个请求被harakiri杀掉会，会输出一条日志</span><br><span class="line">harakiri-verbose &#x3D; true</span><br><span class="line"></span><br><span class="line">#开启内存使用情况报告</span><br><span class="line">memory-report &#x3D; true</span><br><span class="line"></span><br><span class="line">#设置平滑的重启（直到处理完接收到的请求）的长等待时间(秒)</span><br><span class="line">reload-mercy &#x3D; 10</span><br><span class="line"></span><br><span class="line">#设置工作进程使用虚拟内存超过N MB就回收重启</span><br><span class="line">reload-on-as&#x3D; 1024</span><br><span class="line"></span><br><span class="line">#自动给进程命名</span><br><span class="line">auto-procname &#x3D; true</span><br><span class="line"></span><br><span class="line">#为进程指定前缀</span><br><span class="line">procname-prefix-spaced &#x3D; xc-mms</span><br><span class="line"></span><br><span class="line">#设置工作进程每处理N个进程就会被回收重启</span><br><span class="line">max-requests&#x3D;500000</span><br><span class="line"></span><br><span class="line">#设置工作进程使用物理内存超过N MB就回收重启</span><br><span class="line">reload-on-rss&#x3D;100</span><br><span class="line"></span><br><span class="line">#设置socket超时时间，默认4秒</span><br><span class="line">socket-timeout&#x3D;10</span><br><span class="line"></span><br><span class="line">#限制http请求体的大小(Bytes)</span><br><span class="line">limit-post&#x3D;4096</span><br><span class="line"></span><br><span class="line"># clear environment on exit</span><br><span class="line">vacuum &#x3D; true</span><br><span class="line"></span><br><span class="line">#不记录request日志，只记录错误日志</span><br><span class="line">disable-logging &#x3D; true</span><br><span class="line"></span><br><span class="line">#将日志打印到syslog上</span><br><span class="line">#log-syslog &#x3D; true</span><br><span class="line"></span><br><span class="line">#允许用内嵌的语言启动线程。这将允许你在app程序中产生一个子线程</span><br><span class="line">enable-threads &#x3D; true </span><br><span class="line"></span><br><span class="line">#指定pid文件</span><br><span class="line">pidfile &#x3D; &#x2F;var&#x2F;run&#x2F;uwsgi.pid </span><br><span class="line"></span><br><span class="line"># 后台运行,并输出日志</span><br><span class="line">daemonize &#x3D; &#x2F;home&#x2F;opadm&#x2F;log&#x2F;uwsgi.log</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Nginx："><a href="#Nginx：" class="headerlink" title="Nginx："></a>Nginx：</h4><p>实现分布式服务器：实现反向代理、负载均衡，降低服务器负荷。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nginx.conf:</span><br><span class="line"></span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">            include uwsgi_params;</span><br><span class="line">            uwsgi_pass wsbackend;   #uwsgi设置的地址端口</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/" data-id="ckarrety50007vjr53yc69mtz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/24/MTV%EF%BC%88MVC%EF%BC%89%E6%B5%81%E7%A8%8B%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8A%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Django框架MTV流程回顾（上）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Django实现方法回顾(一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/29/Django%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%88%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B%EF%BC%89/">Django中间件（面向切面编程）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/28/Django%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">Django静态文件及文件上传</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/27/Django%E7%BC%93%E5%AD%98%E9%85%8D%E7%BD%AE/">Django缓存配置（Redis）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/25/MTV%E6%B5%81%E7%A8%8B%E8%AF%A6%E7%BB%86%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8B%EF%BC%89/">Django框架MTV流程回顾（下）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/24/MTV%EF%BC%88MVC%EF%BC%89%E6%B5%81%E7%A8%8B%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%8A%EF%BC%89/">Django框架MTV流程回顾（上）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Peter的百宝箱<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
