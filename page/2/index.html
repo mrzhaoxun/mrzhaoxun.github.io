@@ -152,6 +152,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-尝试插入视频_及本地视频" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/20/%E5%B0%9D%E8%AF%95%E6%8F%92%E5%85%A5%E8%A7%86%E9%A2%91_%E5%8F%8A%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91/">md插入视频实现方法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/20/%E5%B0%9D%E8%AF%95%E6%8F%92%E5%85%A5%E8%A7%86%E9%A2%91_%E5%8F%8A%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91/" class="archive-article-date">
+  	<time datetime="2020-05-19T16:32:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="HTML-lt-iframe-gt-标签"><a href="#HTML-lt-iframe-gt-标签" class="headerlink" title="HTML&lt;iframe&gt; 标签"></a>HTML&lt;iframe&gt; 标签</h3><p><a href="https://www.w3school.com.cn/tags/tag_iframe.asp" target="_blank" rel="noopener">&lt;firame&gt;详细信息</a></p>
+<p>优酷视频url地址：</p>
+<p>格式：</p>
+<blockquote>
+<p><a href="http://player.youku.com/embed/xxxxxxxxxxxx" target="_blank" rel="noopener">http://player.youku.com/embed/xxxxxxxxxxxx</a></p>
+</blockquote>
+<p>其中xxxxxxxxxx就是对应的视频的id</p>
+<p>在播放页中截取 XMTQ5OTEyOTU2NA== 替换xxxxxxxx即可</p>
+<p>例：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"#视频url地址"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">framespacing</span>=<span class="string">"0"</span> <span class="attr">allowfullscreen</span>=<span class="string">"true"</span> <span class="attr">width</span>=<span class="string">"100%"</span>  <span class="attr">height</span>=<span class="string">"580"</span> <span class="attr">quality</span>=<span class="string">"high"</span> &gt;</span> <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>适应手机：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: relative; width: 100%; height: 0; padding-bottom: 75%;"</span>&gt;</span><span class="tag">&lt;<span class="name">iframe</span> </span></span><br><span class="line"><span class="tag"><span class="attr">src</span>=<span class="string">"#视频url地址"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">border</span>=<span class="string">"0"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">framespacing</span>=<span class="string">"0"</span> <span class="attr">allowfullscreen</span>=<span class="string">"true"</span> <span class="attr">style</span>=<span class="string">"position: absolute; width: 100%; </span></span></span><br><span class="line"><span class="tag"><span class="string">height: 100%; left: 0; top: 0;"</span>&gt;</span> <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关于本地视频（传输太慢，不建议）"><a href="#关于本地视频（传输太慢，不建议）" class="headerlink" title="关于本地视频（传输太慢，不建议）"></a>关于本地视频（传输太慢，不建议）</h4><p>可通过<a href="https://www.w3school.com.cn/tags/tag_video.asp" target="_blank" rel="noopener">html的&lt;video&gt;</a>标签实现</p>
+<p>本地视频：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">'/video/test01.mp4'</span> #这里的路径为<span class="attr">blog</span>/下的<span class="attr">source</span>/下</span></span><br><span class="line"><span class="tag">       <span class="attr">type</span>=<span class="string">'video/mp4'</span></span></span><br><span class="line"><span class="tag">       <span class="attr">controls</span>=<span class="string">'controls'</span>  </span></span><br><span class="line"><span class="tag">       <span class="attr">preload</span>=<span class="string">"auto"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">width</span>=<span class="string">'100%'</span></span></span><br><span class="line"><span class="tag">       <span class="attr">height</span>=<span class="string">'100%'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/20/%E5%B0%9D%E8%AF%95%E6%8F%92%E5%85%A5%E8%A7%86%E9%A2%91_%E5%8F%8A%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-git_base" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
