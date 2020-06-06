@@ -152,6 +152,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Django方法实现回顾（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/">Django实现方法回顾(一)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-05-22T08:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>知识回顾，不做左耳进右耳出的傻狍子!</p>
+<h4 id="用户注册："><a href="#用户注册：" class="headerlink" title="- 用户注册："></a>- 用户注册：</h4><p>密码通过hash摘要算法，以十六进制字符串存储。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashilb.new(<span class="string">'sha512'</span>, source.encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br></pre></td></tr></table></figure>
+
+<h4 id="邮件系统可通过Django的send-mail实现"><a href="#邮件系统可通过Django的send-mail实现" class="headerlink" title="- 邮件系统可通过Django的send_mail实现"></a>- 邮件系统可通过Django的send_mail实现</h4><ul>
+<li>setting中配置发件信息。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_HOST &#x3D; smtp地址</span><br><span class="line"></span><br><span class="line">EMAIL_POST &#x3D; smtp（安全）端口</span><br><span class="line"></span><br><span class="line">EMAIL_HOST_USER &#x3D; 发件人</span><br><span class="line"></span><br><span class="line">EMAIL_HOST_PASSWORD &#x3D; 发件人授权码</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Nignx_Base" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

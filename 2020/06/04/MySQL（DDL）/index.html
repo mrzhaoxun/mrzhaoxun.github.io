@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/6 | Peter的首页</title>
+  <title>DDL(data defind language) 数据定义语言 | Peter的首页</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Peter的首页">
-<meta property="og:url" content="http://yoursite.com/archives/2020/06/index.html">
+  <meta name="description" content="DDL  (data defind language)  数据定义语言一、库的操作123CREATE DATABASE (IF NOT EXISTS) 库名;   #创建ALTER DATABASE 库名;                    #修改DROP DATABASE (IF EXISTS) 库名;         #删除  二、表的管理创建表123CREATE TABLE (IF NO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DDL(data defind language) 数据定义语言">
+<meta property="og:url" content="http://yoursite.com/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/index.html">
 <meta property="og:site_name" content="Peter的首页">
+<meta property="og:description" content="DDL  (data defind language)  数据定义语言一、库的操作123CREATE DATABASE (IF NOT EXISTS) 库名;   #创建ALTER DATABASE 库名;                    #修改DROP DATABASE (IF EXISTS) 库名;         #删除  二、表的管理创建表123CREATE TABLE (IF NO">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-04T10:23:51.000Z">
+<meta property="article:modified_time" content="2020-06-06T15:06:00.762Z">
 <meta property="article:author" content="Peter的百宝箱">
 <meta name="twitter:card" content="summary">
   
@@ -150,103 +154,273 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-MySQL（DDL）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      DDL(data defind language) 数据定义语言
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/" class="archive-article-date">
+
+        
+        <a href="/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/" class="archive-article-date">
   	<time datetime="2020-06-04T10:23:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/">DDL(data defind language) 数据定义语言</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="DDL-data-defind-language-数据定义语言"><a href="#DDL-data-defind-language-数据定义语言" class="headerlink" title="DDL  (data defind language)  数据定义语言"></a>DDL  (data defind language)  数据定义语言</h3><h4 id="一、库的操作"><a href="#一、库的操作" class="headerlink" title="一、库的操作"></a>一、库的操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE (IF NOT EXISTS) 库名;   #创建</span><br><span class="line">ALTER DATABASE 库名;                    #修改</span><br><span class="line">DROP DATABASE (IF EXISTS) 库名;         #删除</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<h4 id="二、表的管理"><a href="#二、表的管理" class="headerlink" title="二、表的管理"></a>二、表的管理</h4><h5 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a><strong>创建表</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE (IF NOT EXISTS) 表名 (字段名1, 字段类型(长度) 约束,</span><br><span class="line">								  字段名2, 字段类型(长度) 约束,</span><br><span class="line">                                 ... );</span><br></pre></td></tr></table></figure>
 
+<h5 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a><strong>修改表</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD|DROP|CHANGE|MODIFY</span><br><span class="line">COLUMN 字段 字段类型（长度） 约束;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>修改表名</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 RENAME (TO) 新表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改字段、类型</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 CHANGE COLUMN 字段名 新字段名 字段类型;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改字段类型、约束</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 MODIFY COLUMN 字段名 新类型 约束;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>添加新字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD COLUMN 字段名 类型 约束;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>删除字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 DROP COLUMN 字段名;</span><br></pre></td></tr></table></figure>
+
+<h5 id="表的复制"><a href="#表的复制" class="headerlink" title="表的复制"></a>表的复制</h5><ol>
+<li>复制表结构</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表 LIKE 旧表;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>复制表结构+数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表 SELECT * FROM 旧表 WHERE 筛选...;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>复制部分结构（无数据）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表 SELECT ... FROM 旧表 WHERE 0;   # WHERE 1&#x3D;2 恒不成立</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li><h4 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h4><p>原则：类型越简单越好，保存值类型越小越好</p>
+<ul>
+<li><h4 id="整数-INT"><a href="#整数-INT" class="headerlink" title="整数  INT"></a><strong>整数  INT</strong></h4><p>特点：</p>
+<ol>
+<li>默认有符号，添加UNSIGNED 设置无符号</li>
+<li>插入超出范围，报out or range异常 插入临界值</li>
+<li>长度搭配   INT(6) ZEROFILL   → 000123</li>
+</ol>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><h4 id="小数"><a href="#小数" class="headerlink" title="小数"></a><strong>小数</strong></h4><ol>
+<li><p>浮点型</p>
+<p>FLOAT(M, D)</p>
+<p>DOUBLE(M, D)</p>
+</li>
+<li><p>定点型</p>
+<p>DEC(M, D)</p>
+<p>DECIMAL(M, D)</p>
+</li>
+</ol>
+<p>特点：</p>
+<ol>
+<li><p>M 长度，超出range， 插入临界值；</p>
+<p>D 为小数后几位，四舍五入</p>
+</li>
+<li><p>M,D 可省略</p>
+</li>
+<li><p>定点型精度高，如货币运算</p>
+</li>
+</ol>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><h4 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h4><ol>
+<li><p>较短</p>
+<p>CHAR（M）</p>
+<p>VARCHAR（M） 不可省M，可变长度，节省空间，效率低</p>
+</li>
+<li><p>较长</p>
+<p>TEXT</p>
+<p>BLOB（二进制）</p>
+</li>
+</ol>
+</li>
+<li><h5 id="枚举型：插入值仅其中一个，不区分大小写（性别）"><a href="#枚举型：插入值仅其中一个，不区分大小写（性别）" class="headerlink" title="枚举型：插入值仅其中一个，不区分大小写（性别）"></a>枚举型：插入值仅其中一个，不区分大小写（性别）</h5><p>ENUM（列表）</p>
+<p>ENUM（‘a’, ‘b’, ‘c’）    插入A 为 a；插入d 为空</p>
+</li>
+<li><h5 id="SET-型：与ENUM-仅插入数量不同，可插入其中多个"><a href="#SET-型：与ENUM-仅插入数量不同，可插入其中多个" class="headerlink" title="SET 型：与ENUM 仅插入数量不同，可插入其中多个"></a>SET 型：与ENUM 仅插入数量不同，可插入其中多个</h5><p>SET(‘a’, ‘b’, ‘c’)   插入‘A, b, c’ →  a, b, c</p>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><h4 id="日期型"><a href="#日期型" class="headerlink" title="日期型"></a>日期型</h4><p>DATE  仅日期</p>
+<p>TIME  仅时间</p>
+<p>YEAR 仅年</p>
+<p>|日期+时间|字节|范围|时区影响|</p>
+<p>|:—-|:—:|:—:|:–:|</p>
+<p>|DATETIME|8|1000-9999|不受影响|</p>
+<p>|TIMESTAMP|4|1970-2038|受影响|</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你, 惭愧了<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/03/MySQL%EF%BC%88DML%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-06-03T12:42:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/03/MySQL%EF%BC%88DML%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DML(data mainpulation language) 数据操作语言</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/03/MySQL%EF%BC%88DML%EF%BC%89/">DML(data mainpulation language) 数据操作语言</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/02/MySQL%EF%BC%88DQL%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-06-02T15:49:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/02/MySQL%EF%BC%88DQL%EF%BC%89/">DQL(data query language) 数据查询语言</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +443,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

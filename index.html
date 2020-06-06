@@ -152,6 +152,186 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL（DDL）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/">DDL(data defind language) 数据定义语言</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-06-04T10:23:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="DDL-data-defind-language-数据定义语言"><a href="#DDL-data-defind-language-数据定义语言" class="headerlink" title="DDL  (data defind language)  数据定义语言"></a>DDL  (data defind language)  数据定义语言</h3><h4 id="一、库的操作"><a href="#一、库的操作" class="headerlink" title="一、库的操作"></a>一、库的操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE (IF NOT EXISTS) 库名;   #创建</span><br><span class="line">ALTER DATABASE 库名;                    #修改</span><br><span class="line">DROP DATABASE (IF EXISTS) 库名;         #删除</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、表的管理"><a href="#二、表的管理" class="headerlink" title="二、表的管理"></a>二、表的管理</h4><h5 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a><strong>创建表</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE (IF NOT EXISTS) 表名 (字段名1, 字段类型(长度) 约束,</span><br><span class="line">								  字段名2, 字段类型(长度) 约束,</span><br><span class="line">                                 ... );</span><br></pre></td></tr></table></figure>
+
+<h5 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a><strong>修改表</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD|DROP|CHANGE|MODIFY</span><br><span class="line">COLUMN 字段 字段类型（长度） 约束;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>修改表名</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 RENAME (TO) 新表名;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改字段、类型</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 CHANGE COLUMN 字段名 新字段名 字段类型;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改字段类型、约束</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 MODIFY COLUMN 字段名 新类型 约束;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>添加新字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD COLUMN 字段名 类型 约束;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>删除字段</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 DROP COLUMN 字段名;</span><br></pre></td></tr></table></figure>
+
+<h5 id="表的复制"><a href="#表的复制" class="headerlink" title="表的复制"></a>表的复制</h5><ol>
+<li>复制表结构</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表 LIKE 旧表;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>复制表结构+数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表 SELECT * FROM 旧表 WHERE 筛选...;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>复制部分结构（无数据）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 新表 SELECT ... FROM 旧表 WHERE 0;   # WHERE 1&#x3D;2 恒不成立</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li><h4 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h4><p>原则：类型越简单越好，保存值类型越小越好</p>
+<ul>
+<li><h4 id="整数-INT"><a href="#整数-INT" class="headerlink" title="整数  INT"></a><strong>整数  INT</strong></h4><p>特点：</p>
+<ol>
+<li>默认有符号，添加UNSIGNED 设置无符号</li>
+<li>插入超出范围，报out or range异常 插入临界值</li>
+<li>长度搭配   INT(6) ZEROFILL   → 000123</li>
+</ol>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><h4 id="小数"><a href="#小数" class="headerlink" title="小数"></a><strong>小数</strong></h4><ol>
+<li><p>浮点型</p>
+<p>FLOAT(M, D)</p>
+<p>DOUBLE(M, D)</p>
+</li>
+<li><p>定点型</p>
+<p>DEC(M, D)</p>
+<p>DECIMAL(M, D)</p>
+</li>
+</ol>
+<p>特点：</p>
+<ol>
+<li><p>M 长度，超出range， 插入临界值；</p>
+<p>D 为小数后几位，四舍五入</p>
+</li>
+<li><p>M,D 可省略</p>
+</li>
+<li><p>定点型精度高，如货币运算</p>
+</li>
+</ol>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><h4 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h4><ol>
+<li><p>较短</p>
+<p>CHAR（M）</p>
+<p>VARCHAR（M） 不可省M，可变长度，节省空间，效率低</p>
+</li>
+<li><p>较长</p>
+<p>TEXT</p>
+<p>BLOB（二进制）</p>
+</li>
+</ol>
+</li>
+<li><h5 id="枚举型：插入值仅其中一个，不区分大小写（性别）"><a href="#枚举型：插入值仅其中一个，不区分大小写（性别）" class="headerlink" title="枚举型：插入值仅其中一个，不区分大小写（性别）"></a>枚举型：插入值仅其中一个，不区分大小写（性别）</h5><p>ENUM（列表）</p>
+<p>ENUM（‘a’, ‘b’, ‘c’）    插入A 为 a；插入d 为空</p>
+</li>
+<li><h5 id="SET-型：与ENUM-仅插入数量不同，可插入其中多个"><a href="#SET-型：与ENUM-仅插入数量不同，可插入其中多个" class="headerlink" title="SET 型：与ENUM 仅插入数量不同，可插入其中多个"></a>SET 型：与ENUM 仅插入数量不同，可插入其中多个</h5><p>SET(‘a’, ‘b’, ‘c’)   插入‘A, b, c’ →  a, b, c</p>
+</li>
+</ul>
+<br>
+
+<ul>
+<li><h4 id="日期型"><a href="#日期型" class="headerlink" title="日期型"></a>日期型</h4><p>DATE  仅日期</p>
+<p>TIME  仅时间</p>
+<p>YEAR 仅年</p>
+<p>|日期+时间|字节|范围|时区影响|</p>
+<p>|:—-|:—:|:—:|:–:|</p>
+<p>|DATETIME|8|1000-9999|不受影响|</p>
+<p>|TIMESTAMP|4|1970-2038|受影响|</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MySQL（DML）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -792,78 +972,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Django方法实现回顾（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/">Django实现方法回顾(一)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-22T08:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>知识回顾，不做左耳进右耳出的傻狍子!</p>
-<h4 id="用户注册："><a href="#用户注册：" class="headerlink" title="- 用户注册："></a>- 用户注册：</h4><p>密码通过hash摘要算法，以十六进制字符串存储。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashilb.new(<span class="string">'sha512'</span>, source.encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br></pre></td></tr></table></figure>
-
-<h4 id="邮件系统可通过Django的send-mail实现"><a href="#邮件系统可通过Django的send-mail实现" class="headerlink" title="- 邮件系统可通过Django的send_mail实现"></a>- 邮件系统可通过Django的send_mail实现</h4><ul>
-<li>setting中配置发件信息。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_HOST &#x3D; smtp地址</span><br><span class="line"></span><br><span class="line">EMAIL_POST &#x3D; smtp（安全）端口</span><br><span class="line"></span><br><span class="line">EMAIL_HOST_USER &#x3D; 发件人</span><br><span class="line"></span><br><span class="line">EMAIL_HOST_PASSWORD &#x3D; 发件人授权码</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
         </p>
       
 
