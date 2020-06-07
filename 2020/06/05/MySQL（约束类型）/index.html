@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Peter的首页</title>
+  <title>MySQL约束类型 | Peter的首页</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Peter的首页">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="SQL 六大约束 非空 not null 默认 default 主键 primary key 唯一 unique 外键 foreign key 检查约束（MySQL不支持） check  约束可设置多个，无顺序限制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL约束类型">
+<meta property="og:url" content="http://yoursite.com/2020/06/05/MySQL%EF%BC%88%E7%BA%A6%E6%9D%9F%E7%B1%BB%E5%9E%8B%EF%BC%89/index.html">
 <meta property="og:site_name" content="Peter的首页">
+<meta property="og:description" content="SQL 六大约束 非空 not null 默认 default 主键 primary key 唯一 unique 外键 foreign key 检查约束（MySQL不支持） check  约束可设置多个，无顺序限制">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-05T14:32:12.000Z">
+<meta property="article:modified_time" content="2020-06-07T15:46:27.058Z">
 <meta property="article:author" content="Peter的百宝箱">
 <meta name="twitter:card" content="summary">
   
@@ -150,428 +154,99 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Web服务器理解：uWSGI与Nginx配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-MySQL（约束类型）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/">Web服务器理解：uWSGI与Nginx配置</a>
+    <h1 class="article-title" itemprop="name">
+      MySQL约束类型
     </h1>
   
 
         
-        <a href="/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2020-05-23T11:42:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
+        <a href="/2020/06/05/MySQL%EF%BC%88%E7%BA%A6%E6%9D%9F%E7%B1%BB%E5%9E%8B%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-06-05T14:32:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Web开发中是由<strong>Web服务器</strong>与<strong>Web框架</strong>两大块构成。</p>
-<p>其中<strong>Web服务器</strong>即建立连接，转发请求与响应，对请求与响应的处理交由Web框架处理。</p>
-<h4 id="WSGI：-Web服务器网关接口（Python-Web-Server-Gateway-Interface）"><a href="#WSGI：-Web服务器网关接口（Python-Web-Server-Gateway-Interface）" class="headerlink" title="WSGI： Web服务器网关接口（Python Web Server Gateway Interface）"></a><strong>WSGI：</strong> Web服务器网关接口<strong>（</strong>Python Web Server Gateway Interface）</h4><p>是Python程序或框架和Web服务器之间的一种接口、协议</p>
-<h4 id="uWSGI："><a href="#uWSGI：" class="headerlink" title="uWSGI："></a><strong>uWSGI：</strong></h4><p>实现了WSGI协议的一个Web服务器。</p>
-<p><strong>实现过程：</strong>用户到服务器间是http协议，服务器到Python框架间是WSGI协议，这里就需要uWSGI服务器实现WSGI协议。同理反之，响应数据也由Python框架通过WSGI协议返回给uWSGI服务器，再通过http协议传递给用户。</p>
-<ul>
-<li><p><strong>uWSGI + Django</strong> 即完成了<strong>简单</strong>的Web开发（仅适用<strong>访问量较少</strong>的个人网站）。</p>
-        
-          <a class="article-more-a" href="/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/23/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%90%86%E8%A7%A3%EF%BC%9AuWSGI%E4%B8%8ENginx%E9%85%8D%E7%BD%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Django方法实现回顾（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/">Django实现方法回顾(一)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-22T08:53:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>知识回顾，不做左耳进右耳出的傻狍子!</p>
-<h4 id="用户注册："><a href="#用户注册：" class="headerlink" title="- 用户注册："></a>- 用户注册：</h4><p>密码通过hash摘要算法，以十六进制字符串存储。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashilb.new(<span class="string">'sha512'</span>, source.encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br></pre></td></tr></table></figure>
-
-<h4 id="邮件系统可通过Django的send-mail实现"><a href="#邮件系统可通过Django的send-mail实现" class="headerlink" title="- 邮件系统可通过Django的send_mail实现"></a>- 邮件系统可通过Django的send_mail实现</h4><ul>
-<li>setting中配置发件信息。</li>
+        <h3 id="SQL-六大约束"><a href="#SQL-六大约束" class="headerlink" title="SQL 六大约束"></a>SQL 六大约束</h3><ul>
+<li>非空 not null</li>
+<li>默认 default</li>
+<li>主键 primary key</li>
+<li>唯一 unique</li>
+<li>外键 foreign key</li>
+<li>检查约束（MySQL不支持） check</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_HOST &#x3D; smtp地址</span><br><span class="line"></span><br><span class="line">EMAIL_POST &#x3D; smtp（安全）端口</span><br><span class="line"></span><br><span class="line">EMAIL_HOST_USER &#x3D; 发件人</span><br><span class="line"></span><br><span class="line">EMAIL_HOST_PASSWORD &#x3D; 发件人授权码</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
-        
-      
+<p>约束可设置多个，无顺序限制</p>
+<a id="more"></a>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(constraint 约束名) FOREIGN KEY(字段名) references 主表(字段) </span><br><span class="line">on delete cascade; #级联删除</span><br><span class="line">on delete set null; #级联置空</span><br></pre></td></tr></table></figure>
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/22/Django%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%A1%BE%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Nignx_Base" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/21/Nignx_Base/">Nginx安装及配置</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/21/Nignx_Base/" class="archive-article-date">
-  	<time datetime="2020-05-21T15:48:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Nginx基础认识"><a href="#Nginx基础认识" class="headerlink" title="Nginx基础认识"></a>Nginx基础认识</h3><p>正向代理：用户通过访问代理服务器，访问不能访问的网站。（例：VPN）</p>
-<p>反向代理：用户只能访问代理服务器，不知道目标服务器的地址，降低服务器的负载。</p>
-<p>区别：正向代理清楚服务器地址，反向代理只能访问暴露的Nginx服务器</p>
-<h4 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h4><ol>
-<li><p>编译安装，下载地址nginx.org</p>
-<blockquote>
-<p>install gcc openssl pcre zlib     #四个依赖库</p>
-</blockquote>
-<p>安装：</p>
-<blockquote>
-<p>./configure –prefix=/usr/local/nginx         #指定安装路径</p>
-</blockquote>
-<p>编译（gcc）：</p>
-        
-          <a class="article-more-a" href="/2020/05/21/Nignx_Base/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/21/Nignx_Base/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-全世界最好的车车" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/20/%E5%85%A8%E4%B8%96%E7%95%8C%E6%9C%80%E5%A5%BD%E7%9A%84%E8%BD%A6%E8%BD%A6/">全世界最好的车车</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/20/%E5%85%A8%E4%B8%96%E7%95%8C%E6%9C%80%E5%A5%BD%E7%9A%84%E8%BD%A6%E8%BD%A6/" class="archive-article-date">
-  	<time datetime="2020-05-20T15:48:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  嘿，我知道自己唱歌跑调，弹的也乱糟糟的，非常感谢你一直以来的包容，<br>总是容忍我给你发那些并不能欣赏过来的作品，换取你的称赞，满足我像孩子一样的虚荣心。<br>  全世界对我最好的车车!</p>
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-<iframe 
-src="http://player.youku.com/embed/XNDY4MDM5OTA5Mg" scrolling="no" border="0" 
-frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; 
-height: 100%; left: 0; top: 0;"> </iframe>
-</div>
-(视频加载过慢，可部署云服务器改善)
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/20/%E5%85%A8%E4%B8%96%E7%95%8C%E6%9C%80%E5%A5%BD%E7%9A%84%E8%BD%A6%E8%BD%A6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-尝试插入视频_及本地视频" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/20/%E5%B0%9D%E8%AF%95%E6%8F%92%E5%85%A5%E8%A7%86%E9%A2%91_%E5%8F%8A%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91/">md插入视频实现方法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/20/%E5%B0%9D%E8%AF%95%E6%8F%92%E5%85%A5%E8%A7%86%E9%A2%91_%E5%8F%8A%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91/" class="archive-article-date">
-  	<time datetime="2020-05-19T16:32:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="HTML-lt-iframe-gt-标签"><a href="#HTML-lt-iframe-gt-标签" class="headerlink" title="HTML&lt;iframe&gt; 标签"></a>HTML&lt;iframe&gt; 标签</h3><p><a href="https://www.w3school.com.cn/tags/tag_iframe.asp" target="_blank" rel="noopener">&lt;firame&gt;详细信息</a></p>
-<p>优酷视频url地址：</p>
-<p>格式：</p>
-<blockquote>
-<p><a href="http://player.youku.com/embed/xxxxxxxxxxxx" target="_blank" rel="noopener">http://player.youku.com/embed/xxxxxxxxxxxx</a></p>
-</blockquote>
-<p>其中xxxxxxxxxx就是对应的视频的id</p>
-<p>在播放页中截取 XMTQ5OTEyOTU2NA== 替换xxxxxxxx即可</p>
-<p>例：</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"#视频url地址"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">framespacing</span>=<span class="string">"0"</span> <span class="attr">allowfullscreen</span>=<span class="string">"true"</span> <span class="attr">width</span>=<span class="string">"100%"</span>  <span class="attr">height</span>=<span class="string">"580"</span> <span class="attr">quality</span>=<span class="string">"high"</span> &gt;</span> <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>适应手机：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: relative; width: 100%; height: 0; padding-bottom: 75%;"</span>&gt;</span><span class="tag">&lt;<span class="name">iframe</span> </span></span><br><span class="line"><span class="tag"><span class="attr">src</span>=<span class="string">"#视频url地址"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">border</span>=<span class="string">"0"</span> </span></span><br><span class="line"><span class="tag"><span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">framespacing</span>=<span class="string">"0"</span> <span class="attr">allowfullscreen</span>=<span class="string">"true"</span> <span class="attr">style</span>=<span class="string">"position: absolute; width: 100%; </span></span></span><br><span class="line"><span class="tag"><span class="string">height: 100%; left: 0; top: 0;"</span>&gt;</span> <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="关于本地视频（传输太慢，不建议）"><a href="#关于本地视频（传输太慢，不建议）" class="headerlink" title="关于本地视频（传输太慢，不建议）"></a>关于本地视频（传输太慢，不建议）</h4><p>可通过<a href="https://www.w3school.com.cn/tags/tag_video.asp" target="_blank" rel="noopener">html的&lt;video&gt;</a>标签实现</p>
-<p>本地视频：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">'/video/test01.mp4'</span> #这里的路径为<span class="attr">blog</span>/下的<span class="attr">source</span>/下</span></span><br><span class="line"><span class="tag">       <span class="attr">type</span>=<span class="string">'video/mp4'</span></span></span><br><span class="line"><span class="tag">       <span class="attr">controls</span>=<span class="string">'controls'</span>  </span></span><br><span class="line"><span class="tag">       <span class="attr">preload</span>=<span class="string">"auto"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">width</span>=<span class="string">'100%'</span></span></span><br><span class="line"><span class="tag">       <span class="attr">height</span>=<span class="string">'100%'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/20/%E5%B0%9D%E8%AF%95%E6%8F%92%E5%85%A5%E8%A7%86%E9%A2%91_%E5%8F%8A%E6%9C%AC%E5%9C%B0%E8%A7%86%E9%A2%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git_base" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/19/git_base/">Git基础操作</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/19/git_base/" class="archive-article-date">
-  	<time datetime="2020-05-19T02:33:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Git-安装及基础配置"><a href="#Git-安装及基础配置" class="headerlink" title="Git 安装及基础配置"></a>Git 安装及基础配置</h3><blockquote>
-<p>sudo apt-get install git  </p>
-</blockquote>
-<p>#mysql进程出错，在其配置文件中添加</p>
-<blockquote>
-<p>#[mysql]<br>#protocol=tcp</p>
-</blockquote>
-<ol>
-<li>配置git全局环境</li>
+<h4 id="primary-key-与-unique-区别"><a href="#primary-key-与-unique-区别" class="headerlink" title="primary key 与 unique 区别"></a>primary key 与 unique 区别</h4><p>主键不为空，且主键仅一个，允许多列组合</p>
+<p>unique可为空，可创建多个，允许多列组合</p>
+<h4 id="foreign-key-外键："><a href="#foreign-key-外键：" class="headerlink" title="foreign key 外键："></a>foreign key 外键：</h4><ol>
+<li>从表设foreign key</li>
+<li>关联列类型一致或兼容</li>
+<li>主表关联列必须是一个Key(主键、唯一)</li>
+<li>先插入主表数据，删除先删从表</li>
 </ol>
-<blockquote>
-<p>git config –global user.name “用户名”</p>
-<p>git config –global user.email “邮箱地址”</p>
-</blockquote>
-<p>​       查看设置</p>
-<blockquote>
-<p>git config –list</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2020/05/19/git_base/#more">more >></a>
-        
+<h4 id="修改-添加-删除约束-→-表的修改：ALTER-TABLE-表名-…"><a href="#修改-添加-删除约束-→-表的修改：ALTER-TABLE-表名-…" class="headerlink" title="修改/添加/删除约束  →  表的修改：ALTER TABLE 表名 …"></a>修改/添加/删除约束  →  表的修改：ALTER TABLE 表名 …</h4><ul>
+<li><p>列级修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 MODIFY COLUMN 字段名 类型 约束；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>表级修改（foreign key）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD (constraint 约束名) foreign key(字段名) references 主表(字段);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除约束</p>
+<ol>
+<li>非空、默认直接修改，不写约束</li>
+<li>主键、唯一、外键</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 DROP 约束类型 约束键名（没起字段名）;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="Auto-increment-自增长（同约束）-标示列"><a href="#Auto-increment-自增长（同约束）-标示列" class="headerlink" title="Auto_increment  自增长（同约束）  标示列"></a>Auto_increment  自增长（同约束）  标示列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER table 表名 modify id int(11) auto_increment&#x3D;1;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>标示列必须与一个Key搭配</p>
+</li>
+<li><p>只能有一个标示列</p>
+</li>
+<li><p>标示列的类型只能是数值型</p>
+</li>
+<li><p><strong>插入第一条数据给定起始值</strong></p>
+</li>
+</ol>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你, 惭愧了<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -580,16 +255,75 @@ height: 100%; left: 0; top: 0;"> </iframe>
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/19/git_base/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/05/MySQL%EF%BC%88%E7%BA%A6%E6%9D%9F%E7%B1%BB%E5%9E%8B%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/04/MySQL%EF%BC%88DDL%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DDL(data defind language) 数据定义语言</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -609,86 +343,14 @@ height: 100%; left: 0; top: 0;"> </iframe>
 
 
 
-
-  
-    <article id="post-搭建博客的第一个夜晚" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%9C%E6%99%9A/">搭建个人hexo博客的第一步</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%9C%E6%99%9A/" class="archive-article-date">
-  	<time datetime="2020-05-18T16:05:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="hexo搭建个人博客，初步部署到GitHub"><a href="#hexo搭建个人博客，初步部署到GitHub" class="headerlink" title="hexo搭建个人博客，初步部署到GitHub"></a>hexo搭建个人博客，初步部署到GitHub</h3><p>为便于操作切换root </p>
-<blockquote>
-<p>sudo su</p>
-</blockquote>
-<h4 id="第一步：安装hexo所需环境-node-、npm-、cnpm"><a href="#第一步：安装hexo所需环境-node-、npm-、cnpm" class="headerlink" title="第一步：安装hexo所需环境  node 、npm 、cnpm"></a>第一步：安装hexo所需环境  node 、npm 、cnpm</h4><h5 id="1-下载node-js（包含node-npm）"><a href="#1-下载node-js（包含node-npm）" class="headerlink" title="1. 下载node.js（包含node, npm）"></a>1. 下载<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">node.js</a>（包含node, npm）</h5><p>查看版本信息，检查安装成功</p>
-<p>not found重新设置软连接：</p>
-<blockquote>
-<p>sudo ln -s /usr/local/node-v12.16.3-linux-x64/bin/node  /usr/local/bin/</p>
-<p>sudo ln -s /usr/local/node-v12.16.3-linux-x64/bin/npm  /usr/local/bin/</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2020/05/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%9C%E6%99%9A/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%9C%E6%99%9A/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -711,8 +373,8 @@ height: 100%; left: 0; top: 0;"> </iframe>
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
