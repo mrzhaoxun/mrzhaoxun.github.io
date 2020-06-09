@@ -152,6 +152,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Django静态文件及文件上传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/28/Django%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">Django静态文件及文件上传</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/28/Django%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="archive-article-date">
+  	<time datetime="2020-05-28T06:02:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="静态文件配置"><a href="#静态文件配置" class="headerlink" title="静态文件配置"></a>静态文件配置</h3><p>项目中创建static文件夹，加载一些资源，供全局使用。</p>
+<ol>
+<li><h5 id="注册setting：配置位置"><a href="#注册setting：配置位置" class="headerlink" title="注册setting：配置位置"></a>注册setting：配置位置</h5></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;setting:</span><br><span class="line">STATIC_URL = <span class="string">'/static/'</span></span><br><span class="line">STATICFILES_URLS = [</span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static'</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><h5 id="先声明后使用（template中）"><a href="#先声明后使用（template中）" class="headerlink" title="先声明后使用（template中）"></a>先声明后使用（template中）</h5></li>
+</ol>
+        
+          <a class="article-more-a" href="/2020/05/28/Django%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/28/Django%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Django缓存配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -837,83 +910,9 @@ height: 100%; left: 0; top: 0;"> </iframe>
 
 
   
-    <article id="post-搭建博客的第一个夜晚" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%9C%E6%99%9A/">搭建个人hexo博客的第一步</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%9C%E6%99%9A/" class="archive-article-date">
-  	<time datetime="2020-05-18T16:05:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="hexo搭建个人博客，初步部署到GitHub"><a href="#hexo搭建个人博客，初步部署到GitHub" class="headerlink" title="hexo搭建个人博客，初步部署到GitHub"></a>hexo搭建个人博客，初步部署到GitHub</h3><p>为便于操作切换root </p>
-<blockquote>
-<p>sudo su</p>
-</blockquote>
-<h4 id="第一步：安装hexo所需环境-node-、npm-、cnpm"><a href="#第一步：安装hexo所需环境-node-、npm-、cnpm" class="headerlink" title="第一步：安装hexo所需环境  node 、npm 、cnpm"></a>第一步：安装hexo所需环境  node 、npm 、cnpm</h4><h5 id="1-下载node-js（包含node-npm）"><a href="#1-下载node-js（包含node-npm）" class="headerlink" title="1. 下载node.js（包含node, npm）"></a>1. 下载<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">node.js</a>（包含node, npm）</h5><p>查看版本信息，检查安装成功</p>
-<p>not found重新设置软连接：</p>
-<blockquote>
-<p>sudo ln -s /usr/local/node-v12.16.3-linux-x64/bin/node  /usr/local/bin/</p>
-<p>sudo ln -s /usr/local/node-v12.16.3-linux-x64/bin/npm  /usr/local/bin/</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2020/05/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%9C%E6%99%9A/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%9C%E6%99%9A/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
